@@ -14,7 +14,7 @@ namespace ToDoApp.Core.Models
         public int HomeId { get; set; }
         public bool IsDeleted { get; set; }
         public virtual Home Home  { get; set; }
-        public virtual Expens Expens { get; set; }
+        public virtual Expense Expens { get; set; }
 
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ToDoApp.Core.Models
 {
-    public class Expens
+    public class Expense
     {
         [Key, Column(Order = 1)]
         [ForeignKey("Shopping")]
