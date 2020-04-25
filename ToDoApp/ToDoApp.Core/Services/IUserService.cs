@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using ToDoApp.Core.Models;
 
-namespace ToDoApp.Core.Repositories
+namespace ToDoApp.Core.Services
 {
-    interface IInvoicerepository:IRepository<Invoice>
+    public interface IUserService : IService<User>
     {
-      
+        Task<User> Login(string userName, string password);
     }
 }

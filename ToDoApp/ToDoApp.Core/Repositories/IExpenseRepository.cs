@@ -7,7 +7,7 @@ using ToDoApp.Core.Models;
 
 namespace ToDoApp.Core.Repositories
 {
-    interface IExpenseRepository:IRepository<Expense>
+    public interface IExpenseRepository:IRepository<Expense>
     {
      
     }

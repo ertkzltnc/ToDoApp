@@ -6,7 +6,7 @@ using ToDoApp.Core.Models;
 
 namespace ToDoApp.Core.Repositories
 {
-    interface IUserRepository:IRepository<User>
+    public interface IUserRepository:IRepository<User>
     {
         Task<User> Login(string userName, string password);
     }

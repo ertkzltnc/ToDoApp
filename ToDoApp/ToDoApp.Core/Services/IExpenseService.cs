@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using ToDoApp.Core.Models;
 
-namespace ToDoApp.Core.Repositories
+namespace ToDoApp.Core.Services
 {
-    public interface IHomeRepository:IRepository<Home>
+    public interface IExpenseService:IService<Expense>
     {
     }
 }

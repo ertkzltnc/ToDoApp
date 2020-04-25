@@ -7,7 +7,7 @@ using ToDoApp.Core.Models;
 
 namespace ToDoApp.Core.Repositories
 {
-    interface IShoppingRepository:IRepository<Shopping>
+    public interface IShoppingRepository:IRepository<Shopping>
     {
        
 

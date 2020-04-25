@@ -4,9 +4,9 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToDoApp.Core.Repositories
+namespace ToDoApp.Core.Services
 {
-    public interface IRepository<TEntity> where TEntity:class
+    public interface IService<TEntity> where TEntity : class
     {
         Task<TEntity> GetByIdAsync(int id);
         Task<IEnumerable<TEntity>> GetAllAsync();
