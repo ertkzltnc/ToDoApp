@@ -8,13 +8,7 @@ namespace ToDoApp.Core.UnitOfWorks
 {
     public interface IUnitOfWork
     {
-        IUserRepository Users { get; }
-        IHomeRepository Housing { get; }
-        IShoppingRepository Shoppings { get; }
-        IInvoiceRepository Invoices { get; }
-        IExpenseRepository Expenses { get; }
-
-
+        IUserRepository Users { get; }   
         Task CommitAsync();
         void Commit();
     }
