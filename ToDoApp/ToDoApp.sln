@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoApp.API", "ToDoApp.API\ToDoApp.API.csproj", "{61C77BE8-5C66-4F4A-ABDC-62FB0B7761C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoApp.API", "ToDoApp.API\ToDoApp.API.csproj", "{61C77BE8-5C66-4F4A-ABDC-62FB0B7761C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoApp.Core", "ToDoApp.Core\ToDoApp.Core.csproj", "{923BB794-FA88-4511-9C33-AC8EB4FD2333}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoApp.Core", "ToDoApp.Core\ToDoApp.Core.csproj", "{923BB794-FA88-4511-9C33-AC8EB4FD2333}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoApp.Data", "ToDoApp.Data\ToDoApp.Data.csproj", "{A16C0CB7-8A19-44A5-B9A7-60E32FCDE04F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoApp.Data", "ToDoApp.Data\ToDoApp.Data.csproj", "{A16C0CB7-8A19-44A5-B9A7-60E32FCDE04F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoApp.Service", "ToDoApp.Service\ToDoApp.Service.csproj", "{52C51383-6439-4C32-BB6C-1B6F124C4FDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoApp.Service", "ToDoApp.Service\ToDoApp.Service.csproj", "{52C51383-6439-4C32-BB6C-1B6F124C4FDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
