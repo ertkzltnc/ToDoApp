@@ -26,5 +26,11 @@ namespace ToDoApp.Data.UnitOfWorks
         {
             await _context.SaveChangesAsync();
         }
+
+        public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class
+        {
+            return  new Repository<TEntity>(_context);
+            
+        }
     }
 }

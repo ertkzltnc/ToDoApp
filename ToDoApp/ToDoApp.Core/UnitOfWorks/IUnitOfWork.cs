@@ -6,9 +6,11 @@ using ToDoApp.Core.Repositories;
 
 namespace ToDoApp.Core.UnitOfWorks
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork 
     {
-        IUserRepository Users { get; }   
+        IUserRepository Users { get; }
+
+        IRepository<TEntity> GetRepository<TEntity>() where TEntity:class;
         Task CommitAsync();
         void Commit();
     }

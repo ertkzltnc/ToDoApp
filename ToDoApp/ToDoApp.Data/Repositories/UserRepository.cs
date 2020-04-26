@@ -11,7 +11,7 @@ namespace ToDoApp.Data.Repositories
     public class UserRepository : Repository<User>, IUserRepository
     {
         private AppDbContext _appDbContext { get => _context as AppDbContext; }
-        public UserRepository(DbContext context) : base(context)
+        public UserRepository(AppDbContext context) : base(context)
         {
         }
 
