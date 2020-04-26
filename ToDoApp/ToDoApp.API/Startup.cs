@@ -30,7 +30,9 @@ namespace ToDoApp.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => {
-                options.UseSqlServer(Configuration["ConnectionStrings:SqlConstr"].ToString());
+                options.UseSqlServer(Configuration["ConnectionStrings:SqlConstr"].ToString(),o=> {
+                    o.MigrationsAssembly("ToDoApp.Data");
+                });
             });
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();            

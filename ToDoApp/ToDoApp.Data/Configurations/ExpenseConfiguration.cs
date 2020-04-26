@@ -11,8 +11,8 @@ namespace ToDoApp.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Expense> builder)
         {
-            builder.Property(x => x.UserId).IsRequired();
-            builder.Property(x => x.ShoppingId).IsRequired();
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseIdentityColumn();           
             builder.Property(x => x.Amount).IsRequired().HasColumnType("decimal(13,3)");
             builder.ToTable("Expenses");
 

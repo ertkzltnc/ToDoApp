@@ -8,12 +8,9 @@ namespace ToDoApp.Core.Models
 {
     public class Expense
     {
-        [Key, Column(Order = 1)]
-        [ForeignKey("Shopping")]
-        public int ShoppingId { get; set; }
-        [Key, Column(Order = 2)]
-        [ForeignKey("User")]
-        public int UserId { get; set; }
+        public int Id { get; set; }
+        public int? ShoppingId { get; set; }      
+        public int? UserId { get; set; }
         public decimal Amount { get; set; }
         public DateTime Date { get; set; }
         public virtual User User { get; set; }
