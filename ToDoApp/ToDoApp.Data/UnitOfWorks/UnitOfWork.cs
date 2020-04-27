@@ -11,13 +11,16 @@ namespace ToDoApp.Data.UnitOfWorks
     public class UnitOfWork : IUnitOfWork
     {
         private readonly AppDbContext _context;
-        private UserRepository _userRepository; 
+        private UserRepository _userRepository;
+        private HomeRepository _homeRepository;
         public UnitOfWork(AppDbContext appDbContext)
         {
             _context = appDbContext;
         }
         public IUserRepository Users => _userRepository = _userRepository ?? new UserRepository(_context);
+        public IHomeRepository Housing=> _homeRepository = _homeRepository ?? new HomeRepository(_context);
        
+
         public void Commit()
         {
             _context.SaveChanges();

@@ -11,9 +11,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ToDoApp.Core.Repositories;
+using ToDoApp.Core.Services;
 using ToDoApp.Core.UnitOfWorks;
 using ToDoApp.Data;
+using ToDoApp.Data.Repositories;
 using ToDoApp.Data.UnitOfWorks;
+using ToDoApp.Service.Services;
+using AutoMapper;
 
 namespace ToDoApp.API
 {
@@ -29,13 +34,19 @@ namespace ToDoApp.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(Startup));
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(IService<>), typeof(Service.Services.Service<>));
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IHomeService, HomeService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddDbContext<AppDbContext>(options => {
                 options.UseSqlServer(Configuration["ConnectionStrings:SqlConstr"].ToString(),o=> {
                     o.MigrationsAssembly("ToDoApp.Data");
                 });
             });
 
-            services.AddScoped<IUnitOfWork, UnitOfWork>();            
+                      
             services.AddControllers();
         }
 

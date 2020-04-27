@@ -9,6 +9,7 @@ namespace ToDoApp.Core.UnitOfWorks
     public interface IUnitOfWork 
     {
         IUserRepository Users { get; }
+        IHomeRepository Housing { get; }
 
         IRepository<TEntity> GetRepository<TEntity>() where TEntity:class;
         Task CommitAsync();
