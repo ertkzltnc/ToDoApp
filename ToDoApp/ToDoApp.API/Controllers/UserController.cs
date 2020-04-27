@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ToDoApp.API.DTOs;
+using ToDoApp.API.Filters;
 using ToDoApp.Core.Models;
 using ToDoApp.Core.Services;
 
@@ -30,6 +31,7 @@ namespace ToDoApp.API.Controllers
             return Ok(_mapper.Map<IEnumerable<UserDTO>>(user));
         }
 
+        [ServiceFilter(typeof(NotFoundFilter))]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -37,13 +39,14 @@ namespace ToDoApp.API.Controllers
             return Ok(_mapper.Map<UserDTO>(user));
         }
 
+        [ServiceFilter(typeof(NotFoundUser))]
         [HttpGet("{username}/{password}")]
         public async Task<IActionResult> Login(string username,string password)
         {
             var user = await _userService.Login(username, password);
             return Ok(_mapper.Map<UserDTO>(user));
         }
-
+        
         [HttpPost]
         public async Task<IActionResult> Save(UserDTO userDTO)
         {
@@ -56,7 +59,7 @@ namespace ToDoApp.API.Controllers
             var user = _userService.Update(_mapper.Map<User>(userDTO));
             return NoContent();
         }
-
+        [ServiceFilter(typeof(NotFoundFilter))]
         [HttpDelete("{id}")]
         public IActionResult Remove(int id)
         {

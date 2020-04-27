@@ -19,6 +19,7 @@ using ToDoApp.Data.Repositories;
 using ToDoApp.Data.UnitOfWorks;
 using ToDoApp.Service.Services;
 using AutoMapper;
+using ToDoApp.API.Filters;
 
 namespace ToDoApp.API
 {
@@ -40,6 +41,8 @@ namespace ToDoApp.API
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IHomeService, HomeService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<NotFoundFilter>();
+            services.AddScoped<NotFoundUser>();
             services.AddDbContext<AppDbContext>(options => {
                 options.UseSqlServer(Configuration["ConnectionStrings:SqlConstr"].ToString(),o=> {
                     o.MigrationsAssembly("ToDoApp.Data");
@@ -47,7 +50,13 @@ namespace ToDoApp.API
             });
 
                       
-            services.AddControllers();
+            services.AddControllers(options => {
+                options.Filters.Add(new ValidationFilter());
+            });
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

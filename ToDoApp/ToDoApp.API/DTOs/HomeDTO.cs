@@ -9,7 +9,7 @@ namespace ToDoApp.API.DTOs
     public class HomeDTO
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage ="{0} alanı gereklidir.")]
         public string Name { get; set; }
         public string Address { get; set; }
     }

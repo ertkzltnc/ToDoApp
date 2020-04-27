@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ToDoApp.API.DTOs;
+using ToDoApp.API.Filters;
 using ToDoApp.Core.Models;
 using ToDoApp.Core.Services;
 
@@ -35,8 +36,8 @@ namespace ToDoApp.API.Controllers
         {
             var shopping = await _service.GetByIdAsync(id);
             return Ok(_mapper.Map<ShoppingDTO>(shopping));
-        }      
-
+        }
+        
         [HttpPost]
         public async Task<IActionResult> Save(ShoppingDTO shoppingDTO)
         {
