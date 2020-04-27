@@ -40,7 +40,7 @@ namespace ToDoApp.API.Controllers
         }
 
         [ServiceFilter(typeof(NotFoundUser))]
-        [HttpGet("{username}/{password}")]
+        [HttpGet("{username}/{password}")]//değişecek
         public async Task<IActionResult> Login(string username,string password)
         {
             var user = await _userService.Login(username, password);

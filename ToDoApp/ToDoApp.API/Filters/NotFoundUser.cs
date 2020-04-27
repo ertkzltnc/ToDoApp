@@ -34,8 +34,6 @@ namespace ToDoApp.API.Filters
                 errorDTO.Errors.Add($"kullanıcı adı {userName} olan kullanıcı bulunamadı");
                 context.Result = new NotFoundObjectResult(errorDTO);
             }
-
-
         }
     }
 }
