@@ -8,7 +8,7 @@ using ToDoApp.Core.Models;
 
 namespace ToDoApp.API.Mapping
 {
-    public class MapProfile:Profile
+    public class MapProfile : Profile
     {
         public MapProfile()
         {
@@ -18,6 +18,12 @@ namespace ToDoApp.API.Mapping
             CreateMap<HomeUserDTO, Home>();
             CreateMap<User, UserDTO>();
             CreateMap<UserDTO, User>();
+            CreateMap<Shopping, ShoppingDTO>();
+            CreateMap<ShoppingDTO, Shopping>();
+            CreateMap<Invoice, InvoiceDTO>();
+            CreateMap<InvoiceDTO, Invoice>();
+            CreateMap<Expense, ExpenseDTO>();
+            CreateMap<ExpenseDTO, Expense>();
         }
     }
 }
