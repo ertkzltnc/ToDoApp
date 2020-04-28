@@ -20,6 +20,7 @@ using ToDoApp.Data.UnitOfWorks;
 using ToDoApp.Service.Services;
 using AutoMapper;
 using ToDoApp.API.Filters;
+using ToDoApp.API.Extensions;
 
 namespace ToDoApp.API
 {
@@ -66,7 +67,7 @@ namespace ToDoApp.API
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCustomException();
             app.UseHttpsRedirection();
 
             app.UseRouting();
