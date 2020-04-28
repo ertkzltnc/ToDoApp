@@ -5,9 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ToDoApp.Core.Repositories;
+using ToDoApp.Core.Services;
+using ToDoApp.Core.UnitOfWorks;
+using ToDoApp.Data;
+using ToDoApp.Data.Repositories;
+using ToDoApp.Data.UnitOfWorks;
+using ToDoApp.Service.Services;
 
 namespace ToDoApp.Web
 {
@@ -23,6 +31,17 @@ namespace ToDoApp.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(IService<>), typeof(Service.Services.Service<>));
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IHomeService, HomeService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddDbContext<AppDbContext>(options => {
+                options.UseSqlServer(Configuration["ConnectionStrings:SqlConstr"].ToString(), o => {
+                    o.MigrationsAssembly("ToDoApp.Data");
+                });
+            });
+
             services.AddControllersWithViews();
         }
 

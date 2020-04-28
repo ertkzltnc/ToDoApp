@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,13 +13,14 @@ using Microsoft.Extensions.Logging;
 using ToDoApp.Core.Repositories;
 using ToDoApp.Core.Services;
 using ToDoApp.Core.UnitOfWorks;
-using ToDoApp.Data;
-using ToDoApp.Data.Repositories;
-using ToDoApp.Data.UnitOfWorks;
-using ToDoApp.Service.Services;
 using AutoMapper;
 using ToDoApp.API.Filters;
 using ToDoApp.API.Extensions;
+using ToDoApp.Data.Repositories;
+using ToDoApp.Service.Services;
+using ToDoApp.Data.UnitOfWorks;
+using ToDoApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ToDoApp.API
 {
@@ -37,13 +37,13 @@ namespace ToDoApp.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<NotFoundFilter>();
+            services.AddScoped<NotFoundUser>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IService<>), typeof(Service.Services.Service<>));
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IHomeService, HomeService>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<NotFoundFilter>();
-            services.AddScoped<NotFoundUser>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();           
             services.AddDbContext<AppDbContext>(options => {
                 options.UseSqlServer(Configuration["ConnectionStrings:SqlConstr"].ToString(),o=> {
                     o.MigrationsAssembly("ToDoApp.Data");
