@@ -6,7 +6,6 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ToDoApp.API.DTOs;
-using ToDoApp.API.Filters;
 using ToDoApp.Core.Models;
 using ToDoApp.Core.Services;
 

@@ -4,13 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ToDoApp.API.DTOs;
-using ToDoApp.Core.Repositories;
 using ToDoApp.Core.Services;
-using ToDoApp.Data;
-using ToDoApp.Data.Repositories;
+using ToDoApp.Web.DTOs;
 
-namespace ToDoApp.API.Filters
+namespace ToDoApp.Web.Filters
 {
     public class NotFoundFilter : ActionFilterAttribute
     {       
@@ -24,7 +21,7 @@ namespace ToDoApp.API.Filters
 
         public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            int id = (int)context.ActionArguments.Values.FirstOrDefault();
+            int id = (int)context.ActionArguments["id"];
             var user = await _userService.GetByIdAsync(id);           
             if (user!=null)
             {
@@ -32,11 +29,9 @@ namespace ToDoApp.API.Filters
             }
             else
             {
-
                 ErrorDTO errorDTO = new ErrorDTO();
-                errorDTO.Status = 404;
                 errorDTO.Errors.Add($"id'si {id} olan kullanıcı bulunamadı");
-                context.Result = new NotFoundObjectResult(errorDTO);
+                context.Result = new RedirectToActionResult("Error", "Home", errorDTO);
             }   
         }
     }

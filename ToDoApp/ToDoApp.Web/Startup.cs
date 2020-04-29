@@ -17,6 +17,7 @@ using ToDoApp.Data;
 using ToDoApp.Data.Repositories;
 using ToDoApp.Data.UnitOfWorks;
 using ToDoApp.Service.Services;
+using ToDoApp.Web.Filters;
 
 namespace ToDoApp.Web
 {
@@ -32,6 +33,7 @@ namespace ToDoApp.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<NotFoundFilter>();
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IService<>), typeof(Service.Services.Service<>));
@@ -71,7 +73,7 @@ namespace ToDoApp.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=User}/{action=Index}/{id?}");
             });
         }
     }

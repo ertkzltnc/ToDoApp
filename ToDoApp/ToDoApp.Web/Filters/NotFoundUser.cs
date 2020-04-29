@@ -4,40 +4,36 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ToDoApp.API.DTOs;
-using ToDoApp.Core.Repositories;
 using ToDoApp.Core.Services;
-using ToDoApp.Data;
-using ToDoApp.Data.Repositories;
+using ToDoApp.Web.DTOs;
 
-namespace ToDoApp.API.Filters
+namespace ToDoApp.Web.Filters
 {
-    public class NotFoundFilter : ActionFilterAttribute
-    {       
-        
+    public class NotFoundUser: ActionFilterAttribute
+    {
         private readonly IUserService _userService;
-        public NotFoundFilter(IUserService userService)
+        public NotFoundUser(IUserService userService)
         {
             _userService = userService;
-
-        }      
+        }
 
         public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            int id = (int)context.ActionArguments.Values.FirstOrDefault();
-            var user = await _userService.GetByIdAsync(id);           
-            if (user!=null)
+            
+            string  userName = (string)context.ActionArguments["username"];
+
+            var user = await _userService.SingleOrDefaultAsync(x => x.UserName == userName);
+            if (user!= null)
             {
-                 await next();
+                await next();
             }
             else
             {
-
                 ErrorDTO errorDTO = new ErrorDTO();
                 errorDTO.Status = 404;
-                errorDTO.Errors.Add($"id'si {id} olan kullanıcı bulunamadı");
+                errorDTO.Errors.Add($"kullanıcı adı {userName} olan kullanıcı bulunamadı");
                 context.Result = new NotFoundObjectResult(errorDTO);
-            }   
+            }
         }
     }
 }

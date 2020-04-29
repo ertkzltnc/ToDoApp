@@ -1,0 +1,36 @@
+﻿
+@model IEnumerable<UserDTO>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Kullanıcılar</h1>
+<a class="btn btn-primary mb-3" asp-action="Create">Kullanıcı Ekle</a>
+<table class="table table-bordered" >
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>LastName</th>
+            <th>UserName</th>
+            <th>Islemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.LastName</td>
+                <td>@item.UserName</td>
+                <td>
+                    <a asp-action="Update" asp-route-id="@item.Id">Güncelle</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                </td>
+            </tr>  
+            
+        }
+    </tbody>
+</table>
+
