@@ -24,6 +24,11 @@ namespace ToDoApp.Web.Mapping
             CreateMap<InvoiceDTO, Invoice>();
             CreateMap<Expense, ExpenseDTO>();
             CreateMap<ExpenseDTO, Expense>();
+            CreateMap<User, LoginDTO>();
+            CreateMap<LoginDTO, User>();
+            CreateMap<UserDTO, LoginDTO>();
+            CreateMap<LoginDTO, UserDTO>();
+
         }
     }
 }

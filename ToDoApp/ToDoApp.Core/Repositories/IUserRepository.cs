@@ -9,6 +9,6 @@ namespace ToDoApp.Core.Repositories
     public interface IUserRepository:IRepository<User>
     {
         //SingleOrDefaultAsync ile işlem yapabiliriz.sadece örnek olması için yazılmıştır.
-        Task<User> Login(string userName, string password);
+        Boolean Login(User user);
     }
 }

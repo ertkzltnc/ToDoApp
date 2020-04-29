@@ -16,9 +16,9 @@ namespace ToDoApp.Service.Services
         {
         }
 
-        public async Task<User> Login(string userName, string password)
+        public Boolean Login(User user)
         {
-            return await _unitOfWork.Users.Login(userName, password);
+            return _unitOfWork.Users.Login(user);
         }
     }
 }

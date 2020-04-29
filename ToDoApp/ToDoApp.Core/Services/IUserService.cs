@@ -8,6 +8,6 @@ namespace ToDoApp.Core.Services
 {
     public interface IUserService : IService<User>
     {
-        Task<User> Login(string userName, string password);
+        Boolean Login(User user);
     }
 }

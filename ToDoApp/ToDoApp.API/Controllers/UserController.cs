@@ -37,15 +37,7 @@ namespace ToDoApp.API.Controllers
         {
             var user = await _userService.GetByIdAsync(id);
             return Ok(_mapper.Map<UserDTO>(user));
-        }
-
-        [ServiceFilter(typeof(NotFoundUser))]
-        [HttpGet("{username}/{password}")]//değişecek
-        public async Task<IActionResult> Login(string username,string password)
-        {
-            var user = await _userService.Login(username, password);
-            return Ok(_mapper.Map<UserDTO>(user));
-        }
+        }        
         
         [HttpPost]
         public async Task<IActionResult> Save(UserDTO userDTO)

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ToDoApp.Core.Models;
@@ -15,10 +16,17 @@ namespace ToDoApp.Data.Repositories
         {
         }
 
-        public async Task<User> Login(string userName, string password)
+        public  Boolean Login(User user)
         {
-            return await _appDbContext.Users.SingleOrDefaultAsync
-                (x => x.UserName == userName && x.Password == password);
+             User userLogin =_appDbContext.Users.FirstOrDefault(x => x.UserName == user.UserName);
+            if (userLogin!=null && userLogin.Password==user.Password)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
